@@ -5,6 +5,10 @@ var item1 = document.getElementById('item1');
 var item2 = document.getElementById('item2');
 var item3 = document.getElementById('item3');
 var click = document.getElementById('clickMe');
+var photoName1 = document.getElementById('photoName1');
+var photoName2 = document.getElementById('photoName2');
+var photoName3 = document.getElementById('photoName3');
+var ulEl = document.getElementById('list');
 //function for photos to choose from
 function Products(src, name, size) {
   this.src = src;
@@ -15,7 +19,6 @@ function Products(src, name, size) {
   Products.productArray.push(this);
 };
 Products.voteCount = 0;
-// var voteCount1 = 0;
 console.log(Products.voteCount);
 new Products('./photos/bag.jpg', 'Bag', '100px');
 new Products('./photos/bathroom.jpg', 'Bathroom', '100px');
@@ -23,13 +26,19 @@ new Products('./photos/banana.jpg', 'Banana', '100px');
 new Products('./photos/boots.jpg', 'Boots', '100px');
 new Products('./photos/breakfast.jpg', 'Breakfast', '100px');
 new Products('./photos/bubblegum.jpg', 'Bubble Gum', '100px');
-
-// //Function for ranks for photos
-// Products.rankProducts = function () {
-//   for (var i in Products.productArray) {
-//     console.log(Products.productArray[i].rankProducts);
-//   }
-// };
+new Products('./photos/chair.jpg', 'Chair', '100px');
+new Products('./photos/cthulhu.jpg', 'Cthulhu', '100px');
+new Products('./photos/dog-duck.jpg', 'Dog Duck', '100px');
+new Products('./photos/dragon.jpg', 'Dragon', '100px');
+new Products('./photos/pen.jpg', 'Pen', '100px');
+new Products('./photos/pet-sweep.jpg', 'Pet Sweep', '100px');
+new Products('./photos/shark.jpg', 'Shark', '100px');
+new Products('./photos/sweep.jpg', 'Sweep', '100px');
+new Products('./photos/tauntaun.jpg', 'Tauntaun', '100px');
+new Products('./photos/unicorn.jpg', 'Unicorn', '100px');
+new Products('./photos/usb.jpg', 'USB', '100px');
+new Products('./photos/water-can.jpg', 'Water Can', '100px');
+new Products('./photos/wine-glass.jpg', 'Wine Glass', '100px');
 
 
 //do while loops for random numbers for photos to change
@@ -61,6 +70,10 @@ Products.random = function () {
   Products.productArray[randomNumber2].timesShown++;
   Products.productArray[randomNumber3].timesShown++;
 
+  photoName1.textContent = Products.productArray[randomNumber1].name;
+  photoName2.textContent = Products.productArray[randomNumber2].name;
+  photoName3.textContent = Products.productArray[randomNumber3].name;
+
   item1.dataset.index = randomNumber1;
   item2.dataset.index = randomNumber2;
   item3.dataset.index = randomNumber3;
@@ -70,24 +83,30 @@ Products.random = function () {
   pastRandomNumber3 = randomNumber3;
 };
 
-var pastRandomNumber1 = 0;
-var pastRandomNumber2 = 1;
-var pastRandomNumber3 = 2;
+var pastRandomNumber1 = -1;
+var pastRandomNumber2 = -2;
+var pastRandomNumber3 = -3;
 
-Products.random();
-
-
-function handleClickEvent(event) {
-  event.preventDefault();
-  Products.random();
-  Products.voteCount++;
-  console.log(Products.voteCount);
-  Products.productArray[event.target.dataset.index].votes++;
-
-  if (Products.voteCount == 5) {
-    click.removeEventListener('click', handleClickEvent);  
+function renderList() {
+  for (var i in Products.productArray) {
+    var liEl = document.createElement('li');
+    liEl.textContent = Products.productArray[i].votes + ' votes for ' + Products.productArray[i].name;
+    ulEl.appendChild(liEl);
   }
 };
 
+Products.random();
+
+function handleClickEvent(event) {
+  event.preventDefault();
+  Products.voteCount++;
+  Products.productArray[event.target.dataset.index].votes++;
+  console.log(Products.productArray[event.target.dataset.index]);
+  if (Products.voteCount == 25) {
+    renderList();
+    click.removeEventListener('click', handleClickEvent);
+  }
+  Products.random();
+};
 
 click.addEventListener('click', handleClickEvent);

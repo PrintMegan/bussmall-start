@@ -26,6 +26,20 @@ new Products('./photos/banana.jpg', 'Banana', '100px');
 new Products('./photos/boots.jpg', 'Boots', '100px');
 new Products('./photos/breakfast.jpg', 'Breakfast', '100px');
 new Products('./photos/bubblegum.jpg', 'Bubble Gum', '100px');
+new Products('./photos/chair.jpg', 'Chair', '100px');
+new Products('./photos/cthulhu.jpg', 'Cthulhu', '100px');
+new Products('./photos/dog-duck.jpg', 'Dog Duck', '100px');
+new Products('./photos/dragon.jpg', 'Dragon', '100px');
+new Products('./photos/pen.jpg', 'Pen', '100px');
+new Products('./photos/pet-sweep.jpg', 'Pet Sweep', '100px');
+new Products('./photos/shark.jpg', 'Shark', '100px');
+new Products('./photos/sweep.jpg', 'Sweep', '100px');
+new Products('./photos/tauntaun.jpg', 'Tauntaun', '100px');
+new Products('./photos/unicorn.jpg', 'Unicorn', '100px');
+new Products('./photos/usb.jpg', 'USB', '100px');
+new Products('./photos/water-can.jpg', 'Water Can', '100px');
+new Products('./photos/wine-glass.jpg', 'Wine Glass', '100px');
+
 
 //do while loops for random numbers for photos to change
 Products.random = function () {
@@ -88,7 +102,7 @@ function handleClickEvent(event) {
   Products.voteCount++;
   Products.productArray[event.target.dataset.index].votes++;
   console.log(Products.productArray[event.target.dataset.index]);
-  if (Products.voteCount == 5) {
+  if (Products.voteCount == 25) {
     renderList();
     click.removeEventListener('click', handleClickEvent);
   }

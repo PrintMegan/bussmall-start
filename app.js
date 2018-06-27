@@ -19,7 +19,7 @@ function Products(src, name, size) {
   Products.productArray.push(this);
 };
 Products.voteCount = 0;
-console.log(Products.voteCount);
+// console.log(Products.voteCount);
 new Products('./photos/bag.jpg', 'Bag', '100px');
 new Products('./photos/bathroom.jpg', 'Bathroom', '100px');
 new Products('./photos/banana.jpg', 'Banana', '100px');
@@ -33,10 +33,10 @@ new Products('./photos/dragon.jpg', 'Dragon', '100px');
 new Products('./photos/pen.jpg', 'Pen', '100px');
 new Products('./photos/pet-sweep.jpg', 'Pet Sweep', '100px');
 new Products('./photos/shark.jpg', 'Shark', '100px');
-new Products('./photos/sweep.jpg', 'Sweep', '100px');
+new Products('./photos/sweep.png', 'Sweep', '100px');
 new Products('./photos/tauntaun.jpg', 'Tauntaun', '100px');
 new Products('./photos/unicorn.jpg', 'Unicorn', '100px');
-new Products('./photos/usb.jpg', 'USB', '100px');
+new Products('./photos/usb.gif', 'USB', '100px');
 new Products('./photos/water-can.jpg', 'Water Can', '100px');
 new Products('./photos/wine-glass.jpg', 'Wine Glass', '100px');
 
@@ -81,6 +81,7 @@ Products.random = function () {
   pastRandomNumber1 = randomNumber1;
   pastRandomNumber2 = randomNumber2;
   pastRandomNumber3 = randomNumber3;
+
 };
 
 var pastRandomNumber1 = -1;
@@ -105,8 +106,64 @@ function handleClickEvent(event) {
   if (Products.voteCount == 25) {
     renderList();
     click.removeEventListener('click', handleClickEvent);
+    for (var j in Products.productArray) {
+      chartDataVotes.push(Products.productArray[j].votes);
+    }
+    drawChart();
+    console.log(chartDataVotes);
   }
   Products.random();
 };
 
 click.addEventListener('click', handleClickEvent);
+
+var productNameArray = [];
+var chartDataVotes = [];
+
+for (var i in Products.productArray) {
+  productNameArray.push(Products.productArray[i].name);
+}
+// console.log(productNameArray);
+
+// console.log(chartData);
+function drawChart() {
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+      labels: productNameArray,
+      datasets: [{
+        label: '# of Votes',
+        data: chartDataVotes,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
+
+

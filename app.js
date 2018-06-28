@@ -9,6 +9,7 @@ var photoName1 = document.getElementById('photoName1');
 var photoName2 = document.getElementById('photoName2');
 var photoName3 = document.getElementById('photoName3');
 var ulEl = document.getElementById('list');
+var button = document.getElementById('vote');
 //function for photos to choose from
 function Products(src, name, size) {
   this.src = src;
@@ -69,6 +70,11 @@ Products.random = function () {
   Products.productArray[randomNumber1].timesShown++;
   Products.productArray[randomNumber2].timesShown++;
   Products.productArray[randomNumber3].timesShown++;
+
+  //working on local storage
+  // if(!localStorage.getItem('tempVotes')){ 
+  //   Products.random = [];
+  
 
   photoName1.textContent = Products.productArray[randomNumber1].name;
   photoName2.textContent = Products.productArray[randomNumber2].name;

@@ -20,27 +20,25 @@ function Products(src, name, size) {
   Products.productArray.push(this);
 };
 Products.voteCount = 0;
-// console.log(Products.voteCount);
-new Products('./photos/bag.jpg', 'Bag', '100px');
-new Products('./photos/bathroom.jpg', 'Bathroom', '100px');
-new Products('./photos/banana.jpg', 'Banana', '100px');
-new Products('./photos/boots.jpg', 'Boots', '100px');
-new Products('./photos/breakfast.jpg', 'Breakfast', '100px');
-new Products('./photos/bubblegum.jpg', 'Bubble Gum', '100px');
-new Products('./photos/chair.jpg', 'Chair', '100px');
-new Products('./photos/cthulhu.jpg', 'Cthulhu', '100px');
-new Products('./photos/dog-duck.jpg', 'Dog Duck', '100px');
-new Products('./photos/dragon.jpg', 'Dragon', '100px');
-new Products('./photos/pen.jpg', 'Pen', '100px');
-new Products('./photos/pet-sweep.jpg', 'Pet Sweep', '100px');
-new Products('./photos/shark.jpg', 'Shark', '100px');
-new Products('./photos/sweep.png', 'Sweep', '100px');
-new Products('./photos/tauntaun.jpg', 'Tauntaun', '100px');
-new Products('./photos/unicorn.jpg', 'Unicorn', '100px');
-new Products('./photos/usb.gif', 'USB', '100px');
-new Products('./photos/water-can.jpg', 'Water Can', '100px');
-new Products('./photos/wine-glass.jpg', 'Wine Glass', '100px');
-
+  new Products('./photos/bag.jpg', 'Bag', '100px');
+  new Products('./photos/bathroom.jpg', 'Bathroom', '100px');
+  new Products('./photos/banana.jpg', 'Banana', '100px');
+  new Products('./photos/boots.jpg', 'Boots', '100px');
+  new Products('./photos/breakfast.jpg', 'Breakfast', '100px');
+  new Products('./photos/bubblegum.jpg', 'Bubble Gum', '100px');
+  new Products('./photos/chair.jpg', 'Chair', '100px');
+  new Products('./photos/cthulhu.jpg', 'Cthulhu', '100px');
+  new Products('./photos/dog-duck.jpg', 'Dog Duck', '100px');
+  new Products('./photos/dragon.jpg', 'Dragon', '100px');
+  new Products('./photos/pen.jpg', 'Pen', '100px');
+  new Products('./photos/pet-sweep.jpg', 'Pet Sweep', '100px');
+  new Products('./photos/shark.jpg', 'Shark', '100px');
+  new Products('./photos/sweep.png', 'Sweep', '100px');
+  new Products('./photos/tauntaun.jpg', 'Tauntaun', '100px');
+  new Products('./photos/unicorn.jpg', 'Unicorn', '100px');
+  new Products('./photos/usb.gif', 'USB', '100px');
+  new Products('./photos/water-can.jpg', 'Water Can', '100px');
+  new Products('./photos/wine-glass.jpg', 'Wine Glass', '100px');
 
 //do while loops for random numbers for photos to change
 Products.random = function () {
@@ -71,10 +69,7 @@ Products.random = function () {
   Products.productArray[randomNumber2].timesShown++;
   Products.productArray[randomNumber3].timesShown++;
 
-  //working on local storage
-  // if(!localStorage.getItem('tempVotes')){ 
-  //   Products.random = [];
-  
+
 
   photoName1.textContent = Products.productArray[randomNumber1].name;
   photoName2.textContent = Products.productArray[randomNumber2].name;
@@ -94,20 +89,13 @@ var pastRandomNumber1 = -1;
 var pastRandomNumber2 = -2;
 var pastRandomNumber3 = -3;
 
-function renderList() {
-  for (var i in Products.productArray) {
-    // var liEl = document.createElement('li');
-    // liEl.textContent = Products.productArray[i].votes + ' votes for ' + Products.productArray[i].name;
-    // ulEl.appendChild(liEl);
-  }
-};
-
 Products.random();
 
 function handleClickEvent(event) {
   event.preventDefault();
   Products.voteCount++;
   Products.productArray[event.target.dataset.index].votes++;
+  storeClickData();
   console.log(Products.productArray[event.target.dataset.index]);
   if (Products.voteCount == 25) {
     renderList();
@@ -117,6 +105,14 @@ function handleClickEvent(event) {
     }
     drawChart();
     console.log(chartDataVotes);
+  }
+  if (localStorage.productArray) {
+    Product.all = JSON.parse(localStorage.productArray);
+  } else {
+    for (var i = 0; i < Products.name.length; i++) {
+      new Products(Products.names[i]);
+    }
+    console.log(Product.all);
   }
   Products.random();
 };
@@ -130,6 +126,8 @@ for (var i in Products.productArray) {
   productNameArray.push(Products.productArray[i].name);
 }
 // console.log(productNameArray);
+
+
 
 // console.log(chartData);
 function drawChart() {
@@ -195,5 +193,3 @@ function drawChart() {
     }
   });
 }
-
-

@@ -1,4 +1,65 @@
+body{
+  display: inline-block;
+}
+
 img {
 width: 150px;
-float: left;
+height: auto;
+}
+
+ul {
+  color: black; 
+}
+
+h1 {
+  color:black;
+ text-align: center;
+}
+
+#photoName1{ 
+text-align: center;
+width: 150px;
+}
+
+#photoName2{
+  text-align: left;
+  width: 150px;
+}
+
+#photoName3{
+ width: 150px;
+ text-align: left;
+}
+
+div p{
+display: inline-block;
+}
+
+#nav{
+  text-align: center;
+  background-color: yellow;
+  height:50px;
+}
+
+li{
+  display: inline-block; 
+  margin: 30px; 
+}
+
+#clearFloat{
+  clear: both;
+}
+
+#names{
+  width:900px;
+  align-content: center;
+ float: left;
+  
+}
+#myChart{
+  align-content: center;
+}
+
+#items {
+  display: inline-block;
 }

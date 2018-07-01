@@ -11,13 +11,11 @@ var click = document.getElementById('clickMe');
 var photoName1 = document.getElementById('photoName1');
 var photoName2 = document.getElementById('photoName2');
 var photoName3 = document.getElementById('photoName3');
-var ulEl = document.getElementById('list');
-var button = document.getElementById('vote');
 //Constructor function for objects to pass through
 function Product(src, name, size) {
   this.src = src;
   this.name = name;
-  this.size = size || '100px';
+  this.size = size || '100,100,100,100';
   this.votes = 0;
   this.timesShown = 0;
   Product.productsArray.push(this);
@@ -33,7 +31,7 @@ new Product('./photos/bubblegum.jpg', 'Bubble Gum', '100px');
 new Product('./photos/chair.jpg', 'Chair', '100px');
 new Product('./photos/cthulhu.jpg', 'Cthulhu', '100px');
 new Product('./photos/dog-duck.jpg', 'Dog Duck', '100px');
-new Product('./photos/dragon.jpg', 'Dragon', '100px');
+new Product('./photos/dragon.jpg', 'Dragon');
 new Product('./photos/pen.jpg', 'Pen', '100px');
 new Product('./photos/pet-sweep.jpg', 'Pet Sweep', '100px');
 new Product('./photos/shark.jpg', 'Shark', '100px');
@@ -45,7 +43,7 @@ new Product('./photos/water-can.jpg', 'Water Can', '100px');
 new Product('./photos/wine-glass.jpg', 'Wine Glass', '100px');
 
 //do while loops for random numbers for photos to change when clicked pulling random image src
-Product.random = function () {
+Product.randomSrcImg = function () {
   var randomNumber1 = 0;
   do {
     randomNumber1 = Math.floor(Math.random() * Product.productsArray.length);
@@ -82,7 +80,7 @@ Product.random = function () {
 var pastRandomNumber1 = -1;
 var pastRandomNumber2 = -2;
 var pastRandomNumber3 = -3;
-Product.random();
+Product.randomSrcImg();
 //handle event function. Adds click votes to photos. draws graph chart after photos have been clicked 25 times
 function handleClickEvent(event) {
   event.preventDefault();
@@ -96,7 +94,7 @@ function handleClickEvent(event) {
     }
     drawChart();
   }
-  Product.random();
+  Product.randomSrcImg();
   localStorage.busmall = JSON.stringify(productsArray);
 };
 //event listener

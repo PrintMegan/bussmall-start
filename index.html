@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" type="reset" href="http://meyerweb.com/eric/tools/css/reset/"/> 
-    <link rel="stylesheet" type="text/css" href="./display.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<head>
+  <link rel="stylesheet" type="reset" href="http://meyerweb.com/eric/tools/css/reset/" />
+  <link rel="stylesheet" type="text/css" href="./display.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
   <h1>Bus Mall Shopping</h1>
-  <nav>
+  <nav id="nav">
     <ul>
-    <li>Products</li>
-    <li>Home</li>
-    <li>About</li>
-    <li>Contact</li>
+      <li>Products</li>
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+
+  <section id="clickMe">
+    <div id="names">
+      <p id="photoName1"></p>
+      <p id="photoName2"></p>
+      <p id="photoName3"></p>
+
+    </div>
+    <div id="clearFloat">
+    </div>
+    <div id="items">
+      <img id="item1" data-index="0" src="">
+      <img id="item2" data-index="1" src="">
+      <img id="item3" data-index="2" src="">
+    </div>
+
+  </section>
+  <ul id="list"></ul>
   </ul>
-</nav>
-<div>Results</div>
-<section id="clickMe">
-  <div>
-    <p id="photoName1"></p> 
-    <img id="item1" data-index="0" src="">
-    
-  </div>
-  <div>
-    <p id="photoName2"></p>
-    <img id="item2" data-index="1" src="">
-  </div>
-  <div>
-    <p id="photoName3"></p>
-    <img id="item3" data-index="2" src="">
-  </div>
-</section>
-<ul id=list></ul>
-</ul>
-<canvas id="myChart" width="400px" height="400px"></canvas>
-<button id="vote" type="click">Vote</button>
+  <canvas id="myChart" width="400px" height="400px"></canvas>
+  <button id="vote" type="click">Vote</button>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="./app.js"></script>
+
 </html>
